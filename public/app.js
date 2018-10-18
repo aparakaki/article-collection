@@ -9,6 +9,10 @@ $(document).ready(function() {
 
     $(".clear-articles").on("click", function(event) {
         event.preventDefault();
+        $.ajax(`/article/delete`, {type: "DELETE"})
+        .then(function(data) {
+            location.reload();
+        });
         
     })
 
@@ -46,7 +50,6 @@ $(document).ready(function() {
 
         $.ajax(`/article/${id}/1`, {type: "PUT"})
         .then(function(data) {
-            console.log("return")
             location.reload();
         })
     })
@@ -99,6 +102,9 @@ $(document).ready(function() {
 
         $.get(`/api/notes/${id}`, function(data) {
             console.log(data);
+            // let noteTag = $("<p>").text(data)
+            // let cardBody = $("<div>").addClass("card-body");
+            // $("#modal-card").append(cardBody.append(noteTag));
         })
 
     });

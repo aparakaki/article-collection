@@ -89,6 +89,24 @@ app.get("/api/notes/:id", function (req, res) {
         });
 });
 
+//delete all articles
+app.delete("/article/delete", function(req, res) {
+    db.Article.remove({})
+    .then(function (data) {
+        db.Note.remove({})
+        .then(function (data) {
+            res.json(data);
+
+        })
+        .catch(function (err) {
+            return res.json(err);
+        });
+    })
+    .catch(function (err) {
+        return res.json(err);
+    });
+})
+
 
 app.get("/scrape", function (req, res) {
     axios.get("https://www.huffpost.com/life/topic/home-decor").then(function (response) {
