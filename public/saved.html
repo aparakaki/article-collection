@@ -22,7 +22,6 @@
         <h3 class="nav-title">Article Scrapper</h3>
         <a class="nav-link" href="/">Home</a>
         <a class="nav-link" href="/saved">Saved Articles</a>
-        <button type="button" class="btn btn-info scrape-articles">Scrape Articles</button>
         <button type="button" class="btn btn-info clear-articles">Clear Articles</button>
     </nav>
 
@@ -33,13 +32,29 @@
         </div>
     </div>
     
-    <div id="article-disp" class="container">
-        <!-- <div class="row">
-            <div id="col1" class="col-md-6"></div>
-            <div id="col2" class="col-md-6"></div>
-        </div> -->
-        
+    <div id="saved-disp" class="container">
+
     </div>
+
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel"></h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                    <div class="card" id="modal-card"></div>
+                    <input class="form-control" id="inputNote" placeholder="New Note">
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-primary save-note">Save Note</button>
+                </div>
+              </div>
+            </div>
+          </div>
 
 </body>
 

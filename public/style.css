@@ -1,0 +1,35 @@
+nav {
+    height: 80px;
+    padding-top: 20px;
+    padding-left: 20px;
+}
+
+.nav-title {
+    margin-left: 30px;
+    margin-right: 30px;
+}
+
+.clear-articles {
+    height: 40px;
+    position: relative;
+    left: 500px;
+}
+
+.scrape-articles {
+    height: 40px;
+    position: relative;
+    left: 460px;
+}
+
+.article-img {
+    width: 350px;
+    height: auto;
+}
+
+.save-article {
+    /* margin-top: 45px;
+    margin-left: 590px; */
+    position: relative;
+    left: 590px;
+    top: 40px;
+}

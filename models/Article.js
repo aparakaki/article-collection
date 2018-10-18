@@ -12,12 +12,24 @@ var ArticleSchema = new Schema({
         required: true,
         unique: true
     },
+    author: {
+        type: String,
+        required: true
+    },
     summary: {
         type: String,
-        required: true,
-        unique: true
+        required: true
     },
-    comment: {
+    image: {
+        type: String,
+        required: true
+    },
+    saved: {
+        type: Boolean,
+        default: false,
+        require: true
+    },
+    note: {
         type: Schema.Types.ObjectId,
         ref: "Note"
     }
