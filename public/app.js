@@ -92,21 +92,30 @@ $(document).ready(function() {
         $.ajax(`/article/${id}/0`, {type: "PUT"})
         .then(function(data) {
             location.reload();
-        })
+        });
     });
 
     $(document).on("click", ".notes", function(event) {
         event.preventDefault();
         var id = $(this).attr("data-id");
+       
+        $("#modal-card").empty();
         $(".modal-title").text(`Notes for article: ${id}`);
 
         $.get(`/api/notes/${id}`, function(data) {
             console.log(data);
-            // let noteTag = $("<p>").text(data)
-            // let cardBody = $("<div>").addClass("card-body");
-            // $("#modal-card").append(cardBody.append(noteTag));
+            data[0].note.forEach(item => {
+                let noteTag = $("<p>").text(item.body);
+                let cardBody = $("<div>").addClass("row card-body");
+                let col1 = $("<div>").addClass("col-md-10");
+                let col2 = $("<div>").addClass("col-md-2");
+                let btn = $("<button>").addClass("btn btn-danger delete-note far fa-trash-alt").attr("data-id", item._id);
+                
+                col1.append(noteTag);
+                col2.append(btn);
+                $("#modal-card").append(cardBody.append(col1, col2));
+            })
         })
-
     });
 
     $(document).on("click", ".save-note", function(event) {
@@ -123,7 +132,17 @@ $(document).ready(function() {
 
         $.post("/notes", obj, function(data) {
             location.reload();
-        })
+        });
+    });
+
+    $(document).on("click", ".delete-note", function(event) {
+        event.preventDefault();
+        var id = $(this).attr("data-id");
+
+        $.ajax(`/note/delete/${id}`, {type: "DELETE"})
+        .then(function(data) {
+            location.reload();
+        });
 
     })
 

@@ -59,35 +59,31 @@ app.put("/article/:id/:saved", function (req, res) {
 app.post("/notes", function (req, res) {
     db.Note.create({ body: req.body.text })
         .then(function (data) {
-            db.Article.update({ _id: req.body.id }, { $push: { note: data._id } })
+            db.Article.findByIdAndUpdate({ _id: req.body.id }, {$push: { note: data._id}}, {new: true})
                 .then(function (data1) {
                     console.log(data1);
                     res.json(data1);
                 })
+                .catch(function (err) {
+                    res.json(err);
+                });
+        })
+});
+
+//get article's notes
+app.get("/api/notes/:id", function (req, res) {
+    db.Article.find({ _id: req.params.id })
+        .populate("note")
+        .then(function (data) {
+            console.log(data);
+            res.json(data);
         })
         .catch(function (err) {
             res.json(err);
         });
 });
 
-//get article's notes
-app.get("/api/notes/:id", function (req, res) {
-    db.Article.find({ _id: req.params.id })
-        .then(function (data) {
-            console.log(data);
-            res.json(data);
-            // data.note.forEach(item => {
-            //     db.Note.find({ _id: item })
-            //         .then(function (data1) {
-            //             console.log(data1);
-            //             res.json(data1);
-            //         })
-            // })
-        })
-        .catch(function (err) {
-            res.json(err);
-        });
-});
+
 
 //delete all articles
 app.delete("/article/delete", function(req, res) {
@@ -101,6 +97,17 @@ app.delete("/article/delete", function(req, res) {
         .catch(function (err) {
             return res.json(err);
         });
+    })
+    .catch(function (err) {
+        return res.json(err);
+    });
+});
+
+//delete note
+app.delete("/note/delete/:id", function(req, res) {
+    db.Note.remove({_id: req.params.id})
+    .then(function (data) {
+        res.json(data);        
     })
     .catch(function (err) {
         return res.json(err);
@@ -121,6 +128,7 @@ app.get("/scrape", function (req, res) {
             result.summary = $(this).parent().parent().parent().children(".card__description").text();
             result.image = $(this).parent().parent().parent().parent().children().children().children().children("img").attr("src");
             result.saved = false;
+
             // console.log(result);
 
             db.Article.create(result)
