@@ -13,12 +13,14 @@ nav {
     height: 40px;
     position: relative;
     left: 500px;
+    background-color: rgb(181, 228, 236);
 }
 
 .scrape-articles {
     height: 40px;
     position: relative;
     left: 460px;
+    background-color: rgb(181, 228, 236);
 }
 
 .article-img {
@@ -27,15 +29,32 @@ nav {
 }
 
 .save-article {
-    /* margin-top: 45px;
-    margin-left: 590px; */
     position: relative;
     left: 590px;
-    top: 40px;
+    top: 30px;
 }
 
-/* .delete-note {
-    margin: 0;
-    position: absolute;
-    top: 30%;
-} */
+.article-btn1 {
+    margin: 10px;
+};
+
+a:link, a.visited{
+    color: rgb(154, 79, 179);
+}
+
+.nav .nav-link {
+    color: rgb(80, 78, 80);
+}
+
+.nav .nav-link:hover {
+    color: rgb(211, 14, 218);
+}
+
+h1 {
+    text-align: center;
+    font-weight: bolder;
+}
+p.lead {
+    font-size: 24px;
+    text-align: center;
+}

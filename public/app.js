@@ -66,17 +66,19 @@ $(document).ready(function() {
             let col1 = $("<div>").addClass("col-md-4");
             let col2 = $("<div>").addClass("col-md-8");
             let titleTag = $("<h5>").addClass("card-title").text(element.title);
-            let linkTag = $("<a>").attr("href", element.link);
+            let linkTag = $("<a>").attr("href", element.link).attr("target", "_blank");
             let authorTag = $("<p>").text(element.author);
             let imgTag = $("<img>").attr("src", element.image).addClass("article-img");
             let sumTag = $("<p>").text(element.summary);
-            let btnTag1 = $("<button>").addClass("btn remove-article").attr("data-id", element._id).text("Remove Article");
-            let btnTag2 = $("<button>").addClass("btn notes").attr("data-id", element._id)
+            let btnDiv = $("<div>").addClass("row");
+            let btnTag1 = $("<button>").addClass("btn article-btn1 remove-article").attr("data-id", element._id).text("Remove Article");
+            let btnTag2 = $("<button>").addClass("btn article-btn1 notes").attr("data-id", element._id)
                         .attr("data-toggle", "modal").attr("data-target", "#exampleModal").text("Notes");
            
             linkTag.append(titleTag);
             col1.append(imgTag);
-            col2.append(linkTag, sumTag, authorTag, btnTag1, btnTag2);
+            btnDiv.append(btnTag1, btnTag2)
+            col2.append(linkTag, sumTag, authorTag, btnDiv);
             rowDiv.append(col1, col2);
             cardBody.append(rowDiv);
             newDiv.append(cardBody);
