@@ -29,7 +29,7 @@ $(document).ready(function() {
             let col1 = $("<div>").addClass("col-md-4");
             let col2 = $("<div>").addClass("col-md-8");
             let titleTag = $("<h5>").addClass("card-title").text(element.title);
-            let linkTag = $("<a>").attr("href", element.link);
+            let linkTag = $("<a>").attr("href", element.link).attr("target", "_blank");
             let authorTag = $("<p>").text(element.author);
             let imgTag = $("<img>").attr("src", element.image).addClass("article-img");
             let sumTag = $("<p>").text(element.summary);
