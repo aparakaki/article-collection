@@ -2,7 +2,9 @@ $(document).ready(function() {
 
     $(".scrape-articles").on("click", function(event) {
         event.preventDefault();
+        console.log("clicked")
         $.get("/scrape", function(data) {
+            // console.log(data)
             location.reload();
         })
     });

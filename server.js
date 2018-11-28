@@ -126,14 +126,12 @@ app.get("/scrape", function (req, res) {
             result.link = $(this).parent().attr("href");
             result.author = $(this).parent().parent().parent().children(".card__byline").text();
             result.summary = $(this).parent().parent().parent().children(".card__description").text();
-            result.image = $(this).parent().parent().parent().parent().children().children().children().children("img").attr("src");
+            result.image = $(this).parent().parent().parent().parent().children("a").children().children().children().children("img").attr("src");
             result.saved = false;
-
-            // console.log(result);
 
             db.Article.create(result)
                 .then(function (data) {
-                    // console.log(data);
+                    console.log(data);
                 })
                 .catch(function (err) {
                     return res.json(err);
